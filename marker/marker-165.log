@@ -1,0 +1,23 @@
+cc -MM *.c > .depend
+cc -g -Wall -Werror   -c -o server.o server.c
+cc -g -Wall -Werror   -c -o server_thread.o server_thread.c
+cc -g -Wall -Werror   -c -o request.o request.c
+cc -g -Wall -Werror   -c -o common.o common.c
+cc   server.o server_thread.o request.o common.o -lm -lpthread -lpopt  -o server
+cc -g -Wall -Werror   -c -o client_simple.o client_simple.c
+cc   client_simple.o common.o -lm -lpthread -lpopt  -o client_simple
+cc -g -Wall -Werror   -c -o client.o client.c
+cc   client.o common.o -lm -lpthread -lpopt  -o client
+cc -g -Wall -Werror   -c -o fileset.o fileset.c
+cc   fileset.o common.o -lm -lpthread -lpopt  -o fileset
+Running: /cad2/ece344f/tester/scripts/lab4-01-webserver.py 
+webserver test
+starting server at port 62989
+plot-threads.out: run time with 1 threads is 13.1275. We expect it to lie in between 13.547475 and 14.973525.
+plot-threads.out: run time with 64 threads is 3.6872. We expect it to lie in between 1.0695375 and 2.4955875.
+plot-requests.out: run time with 2 buffers is 2.7638. We expect it to lie in between 1.616615 and 1.786785.
+plot-requests.out: run time with 4 buffers is 2.7076. We expect it to lie in between 1.616615 and 1.786785.
+Mark for webserver test is 42 out of 48
+FAIL
+
+You have received 42 marks out of a total of 48 marks.
